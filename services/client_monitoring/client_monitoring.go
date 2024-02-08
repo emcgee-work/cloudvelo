@@ -175,7 +175,7 @@ func (self *ClientMonitoringManager) SetClientMonitoringState(
 
 	return cvelo_services.SetElasticIndex(ctx,
 		self.config_obj.OrgId,
-		"config", "client_monitoring",
+		"persisted", "client_monitoring",
 		&ConfigEntry{
 			Type: "client_monitoring",
 			Data: json.MustMarshalString(state),

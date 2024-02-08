@@ -185,7 +185,7 @@ func (self *ForemanTestSuite) TestClientMonitoring() {
 	// Add these clients directly into the index.
 	for _, c := range clients {
 		err := cvelo_services.SetElasticIndex(
-			self.Ctx, config_obj.OrgId, "clients", c.Id, c.Record)
+			self.Ctx, config_obj.OrgId, "persisted", c.Id, c.Record)
 		assert.NoError(self.T(), err)
 	}
 
@@ -419,7 +419,7 @@ func (self *ForemanTestSuite) TestHuntsAllClients() {
 	// Add these clients directly into the index.
 	for _, c := range clients {
 		err := cvelo_services.SetElasticIndex(
-			self.Ctx, config_obj.OrgId, "clients", c.Id, c.Record)
+			self.Ctx, config_obj.OrgId, "persisted", c.Id, c.Record)
 		assert.NoError(self.T(), err)
 	}
 
@@ -514,7 +514,7 @@ func (self *ForemanTestSuite) TestHuntsAllClients() {
 	// Update the ping time - the client will only be scheduled once
 	// it is online.
 	err = cvelo_services.SetElasticIndex(self.Ctx,
-		config_obj.OrgId, "clients", "C.ConnectedClient_ping",
+		config_obj.OrgId, "persisted", "C.ConnectedClient_ping",
 		&api.ClientRecord{
 			ClientId: "C.ConnectedClient",
 			Type:     "ping",
@@ -556,7 +556,7 @@ func (self *ForemanTestSuite) testHuntsExpireInFuture() {
 		LowerLabels:   []string{},
 	}
 	err := cvelo_services.SetElasticIndex(
-		self.Ctx, config_obj.OrgId, "clients", c.ClientId, c)
+		self.Ctx, config_obj.OrgId, "persisted", c.ClientId, c)
 	assert.NoError(self.T(), err)
 
 	plan, err := NewPlan(config_obj)
@@ -721,7 +721,7 @@ func (self *ForemanTestSuite) TestHuntsByOS() {
 	// Add these clients directly into the index.
 	for _, c := range clients {
 		err := cvelo_services.SetElasticIndex(
-			self.Ctx, config_obj.OrgId, "clients", c.Id, c.Record)
+			self.Ctx, config_obj.OrgId, "persisted", c.Id, c.Record)
 		assert.NoError(self.T(), err)
 	}
 
@@ -796,7 +796,7 @@ func (self *ForemanTestSuite) checkAssignedHunts(clientId string, expectedHunts 
 func TestForeman(t *testing.T) {
 	suite.Run(t, &ForemanTestSuite{
 		CloudTestSuite: &testsuite.CloudTestSuite{
-			Indexes: []string{"clients", "hunts", "repository", "tasks"},
+			Indexes: []string{"persisted"},
 		},
 	})
 }

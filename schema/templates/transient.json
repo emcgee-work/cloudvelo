@@ -1,6 +1,6 @@
 {
     "index_patterns": [
-        "*results"
+        "*transient"
     ],
     "data_stream": {
         "timestamp_field": {

@@ -181,7 +181,7 @@ sources:
 func TestLauncher(t *testing.T) {
 	suite.Run(t, &LauncherTestSuite{
 		CloudTestSuite: &testsuite.CloudTestSuite{
-			Indexes: []string{"tasks", "collections", "results"},
+			Indexes: []string{"tasks", "collections", "transient"},
 		},
 	})
 }

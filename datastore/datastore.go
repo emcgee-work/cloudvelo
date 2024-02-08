@@ -101,7 +101,7 @@ func (self ElasticDatastore) SetSubject(
 		DocType:   "datastore",
 		Timestamp: utils.GetTime().Now().UnixNano(),
 	}
-	return services.SetElasticIndex(self.ctx, config_obj.OrgId, "results", "", record)
+	return services.SetElasticIndex(self.ctx, config_obj.OrgId, "transient", "", record)
 }
 
 func (self ElasticDatastore) SetSubjectWithCompletion(

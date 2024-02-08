@@ -48,7 +48,7 @@ func (self Ingestor) HandleInterrogation(
 	message *crypto_proto.VeloMessage) error {
 
 	services.SetElasticIndexAsync(
-		config_obj.OrgId, "clients",
+		config_obj.OrgId, "persisted",
 		message.Source+"_interrogate",
 		services.BulkUpdateIndex,
 		&api.ClientRecord{
