@@ -103,7 +103,7 @@ func (self *FlowStorageManager) DeleteFlow(
 
 	// All notebook and their cells
 	notebook_id := fmt.Sprintf("N.%s-%s", flow_id, client_id)
-	r.delete_index("Notebook", "persisted", "notebook_id", notebook_id)
+	r.delete_index("Notebook", "persisted.notebooks", "notebook_id", notebook_id)
 
 	return r.responses, nil
 }

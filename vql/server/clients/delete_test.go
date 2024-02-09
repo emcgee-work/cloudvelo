@@ -73,7 +73,7 @@ func (self *DeleteTestSuite) TestDeleteClient() {
 	// Add these clients directly into the index.
 	for _, c := range clients {
 		err := cvelo_services.SetElasticIndex(
-			self.Ctx, config_obj.OrgId, "persisted", c.ClientId, c)
+			self.Ctx, config_obj.OrgId, "persisted.clients", c.ClientId, c)
 		assert.NoError(self.T(), err)
 	}
 
@@ -102,7 +102,7 @@ func (self *DeleteTestSuite) TestDeleteClient() {
 			Set("client_id", self.client_id)))
 
 	result, err := cvelo_services.GetElasticRecord(context.Background(),
-		self.ConfigObj.OrgId, "clients", self.client_id)
+		self.ConfigObj.OrgId, "persisted.clients", self.client_id)
 	assert.Nil(self.T(), result)
 	assert.Equal(self.T(), err, os.ErrNotExist)
 
@@ -123,7 +123,7 @@ func (self *DeleteTestSuite) getClientRecord(client_id string) *api.ClientRecord
 func TestDeletePlugin(t *testing.T) {
 	suite.Run(t, &DeleteTestSuite{
 		CloudTestSuite: &testsuite.CloudTestSuite{
-			Indexes: []string{"persisted"},
+			Indexes: []string{"persisted.clients"},
 		},
 	})
 }

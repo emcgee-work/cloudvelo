@@ -45,7 +45,7 @@ func (self Indexer) getIndexRecords(
 	config_obj *config_proto.Config,
 	query string, output_chan chan *api_proto.IndexRecord) {
 	hits, err := cvelo_services.QueryChan(ctx, config_obj, 1000,
-		config_obj.OrgId, "clients", query, cvelo_services.NoSortField)
+		config_obj.OrgId, "persisted.clients", query, cvelo_services.NoSortField)
 	if err != nil {
 		logger := logging.GetLogger(config_obj, &logging.FrontendComponent)
 		logger.Error("getIndexRecords: %v", err)

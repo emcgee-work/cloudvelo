@@ -92,7 +92,7 @@ func (self *Repository) List(
 	results := ordereddict.NewDict()
 
 	hits, err := cvelo_services.QueryChan(ctx, config_obj, 1000,
-		self.config_obj.OrgId, "repository", allNamesQuery, "name")
+		self.config_obj.OrgId, "persisted.repository", allNamesQuery, "name")
 	if err != nil && !errors.Is(err, os.ErrNotExist) {
 		return nil, err
 	}
@@ -176,7 +176,7 @@ func (self *Repository) LoadProto(
 func (self *Repository) Del(name string) {
 	self.lru.Remove(name)
 	cvelo_services.DeleteDocument(self.ctx, self.config_obj.OrgId,
-		"repository", name, cvelo_services.SyncDelete)
+		"persisted.repository", name, cvelo_services.SyncDelete)
 }
 
 func (self *Repository) Get(
@@ -248,7 +248,7 @@ func (self *Repository) getFromBackend(
 
 	// Nope - get it from the backend.
 	serialized, err := cvelo_services.GetElasticRecord(self.ctx,
-		self.config_obj.OrgId, "repository", name)
+		self.config_obj.OrgId, "persisted.repository", name)
 	if err != nil {
 		return nil, false
 	}
@@ -282,7 +282,7 @@ func (self *Repository) saveArtifact(
 	// Set the artifact in the elastic index.
 	err := cvelo_services.SetElasticIndex(self.ctx,
 		self.config_obj.OrgId,
-		"repository", artifact.Name,
+		"persisted.repository", artifact.Name,
 		&api.RepositoryEntry{
 			Name:       artifact.Name,
 			Definition: json.MustMarshalString(artifact),

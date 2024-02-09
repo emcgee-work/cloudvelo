@@ -93,12 +93,12 @@ func (self HuntDispatcher) SetHunt(hunt *api_proto.Hunt) error {
 
 	return cvelo_services.SetElasticIndex(self.ctx,
 		self.config_obj.OrgId,
-		"persisted", hunt.HuntId, record)
+		"persisted.hunts", hunt.HuntId, record)
 }
 
 func (self HuntDispatcher) GetHunt(hunt_id string) (*api_proto.Hunt, bool) {
 	serialized, err := cvelo_services.GetElasticRecord(context.Background(),
-		self.config_obj.OrgId, "hunts", hunt_id)
+		self.config_obj.OrgId, "persisted.hunts", hunt_id)
 	if err != nil {
 		return nil, false
 	}
@@ -150,7 +150,7 @@ func (self HuntDispatcher) ListHunts(
 
 	hits, _, err := cvelo_services.QueryElasticRaw(
 		ctx, self.config_obj.OrgId,
-		"hunts", json.Format(getAllHuntsQuery, in.Offset, in.Count))
+		"persisted.hunts", json.Format(getAllHuntsQuery, in.Offset, in.Count))
 	if err != nil {
 		return nil, err
 	}

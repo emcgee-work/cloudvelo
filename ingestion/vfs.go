@@ -69,7 +69,7 @@ func (self Ingestor) HandleSystemVfsListDirectory(
 		}
 
 		err = cvelo_services.SetElasticIndexAsync(
-			config_obj.OrgId, "results", "",
+			config_obj.OrgId, "transient", "",
 			cvelo_services.BulkUpdateCreate, record)
 
 		if err != nil {

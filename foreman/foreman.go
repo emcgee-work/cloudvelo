@@ -71,7 +71,7 @@ func (self Foreman) stopHunt(
 `
 
 	return cvelo_services.UpdateIndex(
-		ctx, org_config_obj.OrgId, "persisted", hunt.HuntId, stopHuntQuery)
+		ctx, org_config_obj.OrgId, "persisted.hunts", hunt.HuntId, stopHuntQuery)
 }
 
 // Rather than retrieving the entire client record we only get those
@@ -143,7 +143,7 @@ func getMinimalClientInfo(
 	}
 	hits, err := cvelo_services.QueryChan(ctx,
 		config_obj, 1000, config_obj.OrgId,
-		"persisted", query, "client_id")
+		"persisted.clients", query, "client_id")
 	if err != nil {
 		return nil, err
 	}
@@ -466,7 +466,7 @@ func (self Foreman) getClientHuntMembership(
 	seen := make(map[string]bool)
 	hits, err := cvelo_services.QueryChan(ctx,
 		config_obj, 1000, config_obj.OrgId,
-		"persisted", query, "client_id")
+		"persisted.clients", query, "client_id")
 	if err != nil {
 		return nil, err
 	}
@@ -499,7 +499,7 @@ func (self Foreman) getClientsSeenAfter(
 
 		hits, err := cvelo_services.QueryChan(
 			ctx, config_obj, 1000,
-			config_obj.OrgId, "persisted", query, "ping")
+			config_obj.OrgId, "persisted.clients", query, "ping")
 		if err != nil {
 			logger := logging.GetLogger(config_obj, &logging.FrontendComponent)
 			logger.Error("getClientsSeenAfter: %v", err)

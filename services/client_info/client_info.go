@@ -101,7 +101,7 @@ func (self *ClientInfoBase) Set(
 
 	return cvelo_services.SetElasticIndex(ctx,
 		self.config_obj.OrgId,
-		"persisted", client_info.ClientId, &api.ClientRecord{
+		"persisted.clients", client_info.ClientId, &api.ClientRecord{
 			ClientId:              client_info.ClientId,
 			Hostname:              client_info.Hostname,
 			System:                client_info.System,

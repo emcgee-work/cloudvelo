@@ -10,101 +10,226 @@
     "mappings": {
       "dynamic": false,
       "properties": {
-        "hunt_id": {
-          "type": "keyword"
+        "hunts": {
+          "properties": {
+            "hunt_id": {
+              "type": "keyword"
+            },
+            "timestamp": {
+              "type": "long"
+            },
+            "scheduled": {
+              "type": "integer"
+            },
+            "completed": {
+              "type": "integer"
+            },
+            "errors": {
+              "type": "integer"
+            },
+            "state": {
+              "type": "keyword"
+            },
+            "hunt": {
+              "type": "binary"
+            }
+          }
         },
-        "timestamp": {
-          "type": "long"
+        "acls": {
+          "properties": {
+            "acl": {
+              "type": "binary"
+            }
+          }
         },
-        "scheduled": {
-          "type": "integer"
+        "client_keys": {
+            "properties": {
+              "pem": {
+                "type": "binary"
+              },
+              "enroll_time": {
+                "type": "long"
+              }
+            }
         },
-        "completed": {
-          "type": "integer"
+        "clients": {
+          "properties": {
+            "client_id": {
+              "type": "keyword"
+            },
+            "hostname": {
+              "type": "keyword"
+            },
+            "release": {
+              "type": "keyword"
+            },
+            "architecture": {
+              "type": "keyword"
+            },
+            "build_time": {
+              "type": "keyword"
+            },
+            "system": {
+              "type": "keyword"
+            },
+            "ping": {
+              "type": "long"
+            },
+            "first_seen_at": {
+              "type": "long"
+            },
+            "labels": {
+              "type": "keyword"
+            },
+            "lower_labels": {
+              "type": "keyword"
+            },
+            "last_interrogate": {
+              "type": "keyword"
+            },
+            "labels_timestamp": {
+              "type": "long"
+            },
+            "mac_addresses": {
+              "type": "keyword"
+            },
+            "last_hunt_timestamp": {
+              "type": "long"
+            },
+            "assigned_hunts": {
+              "type": "keyword"
+            },
+            "type": {
+              "type": "keyword"
+            },
+            "last_event_table_version": {
+              "type": "long"
+            }
+          }
         },
-        "errors": {
-          "type": "integer"
+        "config": {
+          "properties": {
+            "type": {
+              "type": "keyword"
+            },
+            "data": {
+              "type": "binary"
+            }
+          }
         },
-        "state": {
-          "type": "keyword"
-        },
-        "hunt": {
-          "type": "binary"
-        },
-        "client_id": {
-          "type": "keyword"
-        },
-        "hostname": {
-          "type": "keyword"
-        },
-        "release": {
-          "type": "keyword"
-        },
-        "architecture": {
-          "type": "keyword"
-        },
-        "build_time": {
-          "type": "keyword"
-        },
-        "system": {
-          "type": "keyword"
-        },
-        "ping": {
-          "type": "long"
-        },
-        "first_seen_at": {
-          "type": "long"
-        },
-        "labels": {
-          "type": "keyword"
-        },
-        "lower_labels": {
-          "type": "keyword"
-        },
-        "last_interrogate": {
-          "type": "keyword"
-        },
-        "labels_timestamp": {
-          "type": "long"
-        },
-        "mac_addresses": {
-          "type": "keyword"
-        },
-        "last_hunt_timestamp": {
-          "type": "long"
-        },
-        "assigned_hunts": {
-          "type": "keyword"
-        },
-        "type": {
-          "type": "keyword"
-        },
-        "last_event_table_version": {
-          "type": "long"
-        },
-        "data": {
-          "type": "binary"
-        },
-        "notebook_id": {
-          "type": "keyword"
-        },
-        "cell_id": {
-          "type": "keyword"
-        },
-        "notebook": {
-          "type": "binary"
-        },
-        "notebook_cell": {
-          "type": "binary"
-        },
-        "public": {
-          "type": "boolean"
-        },
-        "creator": {
-          "type": "keyword"
-        },
-        "shared": {
-          "type": "keyword"
+        "notebooks": {
+          "properties": {
+            "notebook_id": {
+              "type": "keyword"
+            },
+            "cell_id": {
+              "type": "keyword"
+            },
+            "notebook": {
+              "type": "binary"
+            },
+            "notebook_cell": {
+              "type": "binary"
+            },
+            "public": {
+              "type": "boolean"
+            },
+            "creator": {
+              "type": "keyword"
+            },
+            "shared": {
+              "type": "keyword"
+            },
+            "type": {
+              "type": "keyword"
+            },
+            "timestamp": {
+              "type": "long"
+            }
+          },
+          "notifications": {
+            "properties": {
+              "key": {
+                "type": "keyword"
+              },
+              "timestamp": {
+                "type": "long"
+              }
+            }
+          },
+          "orgs": {
+            "properties": {
+              "org_id": {
+                "type": "keyword"
+              },
+              "nonce": {
+                "type": "keyword"
+              },
+              "name": {
+                "type": "keyword"
+              }
+            }
+          },
+          "repository" : {
+            "properties": {
+              "name": {
+                "type": "keyword"
+              },
+              "definition": {
+                "type": "binary"
+              }
+            }
+          },
+          "tasks": {
+            "properties": {
+              "client_id": {
+                "type": "keyword"
+              },
+              "flow_id": {
+                "type": "keyword"
+              },
+              "data": {
+                "type": "text",
+                "index": false
+              },
+              "timestamp": {
+                "type": "long"
+              }
+            }
+          },
+          "user_mru": {
+            "properties": {
+              "username": {
+                "type": "keyword"
+              },
+              "client_id": {
+                "type": "keyword"
+              },
+              "timestamp": {
+                "type": "long"
+              }
+            }
+          },
+          "user_options": {
+            "properties": {
+              "username": {
+                "type": "keyword"
+              },
+              "gui_options": {
+                "type": "binary"
+              }
+            }
+          },
+          "users": {
+            "properties": {
+              "username": {
+                "type": "keyword"
+              },
+              "record": {
+                "type": "binary"
+              }
+            }
+          }
         }
       }
     }

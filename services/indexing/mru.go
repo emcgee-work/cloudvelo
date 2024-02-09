@@ -20,7 +20,7 @@ func (self Indexer) UpdateMRU(
 	user_name string, client_id string) error {
 	return cvelo_services.SetElasticIndex(self.ctx,
 		self.config_obj.OrgId,
-		"user_mru", user_name+":"+client_id,
+		"persisted.user_mru", user_name+":"+client_id,
 		&MRUItem{
 			Username:  user_name,
 			ClientId:  client_id,

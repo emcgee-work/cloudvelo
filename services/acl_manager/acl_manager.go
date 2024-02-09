@@ -55,7 +55,7 @@ func (self ACLManager) GetPolicy(
 
 	hit, err := cvelo_services.GetElasticRecord(
 		context.Background(), config_obj.OrgId,
-		"acls", principal)
+		"persisted.acls", principal)
 	if err != nil {
 		return nil, err
 	}
@@ -95,7 +95,7 @@ func (self ACLManager) SetPolicy(
 	acl_lru.Set(key, acl_obj)
 	return cvelo_services.SetElasticIndex(self.ctx,
 		config_obj.OrgId,
-		"acls", principal, &ACLRecord{
+		"persisted.acls", principal, &ACLRecord{
 			ACL: json.MustMarshalString(acl_obj),
 		})
 }
